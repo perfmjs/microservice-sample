@@ -9,7 +9,7 @@ import com.google.gson.Gson;
  * @project dal-common
  * @author tony.shen
  * @date 2012-4-27 上午9:20:35
- * Copyright (C) 2010-2012 www.aicai.com Inc. All rights reserved.
+ * Copyright (C) 2010-2012 www.xxx.com Inc. All rights reserved.
  */
 public class ExtendFeaturesUtil {
 

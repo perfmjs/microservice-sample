@@ -19,7 +19,7 @@ import java.util.Map;
  * @project spring-boot-tutorial
  * @author tony.shen
  * @date 2014年4月26日 下午5:33:04
- * Copyright (C) 2010-2012 www.aicai.com Inc. All rights reserved.
+ * Copyright (C) 2010-2012 www.xxx.com Inc. All rights reserved.
  * 参考：Web MVC framework   http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html
  */
 @RestController
