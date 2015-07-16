@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="bitSet" type="java.util.BitSet" />
+		<typeAlias alias="extendFeaturesMap" type="com.github.dbutils.mybatis.extend.ExtendFeaturesMap" />
+		<typeAlias alias="calendar" type="java.util.Calendar" />
+	</typeAliases>
+	<typeHandlers>
+		<typeHandler javaType="bitSet" handler="com.github.dbutils.mybatis.extend.BitFlagBaseTypeHandler" />
+		<typeHandler javaType="extendFeaturesMap" handler="com.github.dbutils.mybatis.extend.ExtendFeaturesBaseTypeHandler" />
+		<typeHandler javaType="calendar" handler="com.github.dbutils.mybatis.extend.CalendarTypeHandler" />
+	</typeHandlers>
+</configuration>

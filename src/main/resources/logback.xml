@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </layout>
+  </appender>
+
+  <logger name="org.springframework">
+    <level value="info"/>
+  </logger>
+  <logger name="com.opensymphony.oscache">
+    <level value="info"/>
+  </logger>
+  <logger name="org.apache">
+    <level value="info"/>
+  </logger>
+  <logger name="com.opensymphony">
+    <level value="info"/>
+  </logger>
+  <logger name="net.sf.navigator">
+    <level value="info"/>
+  </logger>
+  <logger name="org.hibernate">
+    <level value="info"/>
+  </logger>
+  <logger name="freemarker.cache">
+    <level value="info"/>
+  </logger>
+  <logger name="com.opensymphony.xwork2.ognl.OgnlValueStack">
+    <level value="error"/>
+  </logger>
+  <logger name="org.apache.commons.httpclient">
+    <level value="error"/>
+  </logger>
+  <logger name="org.springframework.mock.web.MockServletContext">
+  	<level value="error"/>
+  </logger>
+
+  <root>
+    <level value="debug"/>
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

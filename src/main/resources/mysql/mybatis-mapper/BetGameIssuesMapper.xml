@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.mybatis.lottery.mapper.BetGameIssuesMapper" >
+  <resultMap id="BaseResultMap" type="example.mybatis.lottery.domain.BetGameIssues" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ISSUE_NO" property="issueNo" jdbcType="VARCHAR" />
+    <result column="GAME_ID" property="gameId" jdbcType="INTEGER" />
+    <result column="IS_CURRENT" property="isCurrent" jdbcType="TINYINT" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="OPEN_TIME" property="openTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="TINYINT" />
+    <result column="PRE_ISSUE" property="preIssue" jdbcType="INTEGER" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="PRIZE_POOL" property="prizePool" jdbcType="INTEGER" />
+    <result column="BIT_FLAG" property="bitFlag" jdbcType="BIGINT" />
+    <result column="EXTEND_FEATURES" property="extendFeatures" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ISSUE_NO, GAME_ID, IS_CURRENT, START_TIME, END_TIME, OPEN_TIME, STATUS, PRE_ISSUE, 
+    RESULT, PRIZE_POOL, BIT_FLAG, EXTEND_FEATURES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bet_game_issue
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bet_game_issue
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="example.mybatis.lottery.domain.BetGameIssues" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bet_game_issue (ISSUE_NO, GAME_ID, IS_CURRENT, 
+      START_TIME, END_TIME, OPEN_TIME, 
+      STATUS, PRE_ISSUE, RESULT, 
+      PRIZE_POOL, BIT_FLAG, EXTEND_FEATURES
+      )
+    values (#{issueNo,jdbcType=VARCHAR}, #{gameId,jdbcType=INTEGER}, #{isCurrent,jdbcType=TINYINT}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{openTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT}, #{preIssue,jdbcType=INTEGER}, #{result,jdbcType=VARCHAR}, 
+      #{prizePool,jdbcType=INTEGER}, #{bitFlag,jdbcType=BIGINT}, #{extendFeatures,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="example.mybatis.lottery.domain.BetGameIssues" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bet_game_issue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="issueNo != null" >
+        ISSUE_NO,
+      </if>
+      <if test="gameId != null" >
+        GAME_ID,
+      </if>
+      <if test="isCurrent != null" >
+        IS_CURRENT,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="openTime != null" >
+        OPEN_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="preIssue != null" >
+        PRE_ISSUE,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+      <if test="prizePool != null" >
+        PRIZE_POOL,
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG,
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="issueNo != null" >
+        #{issueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null" >
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="isCurrent != null" >
+        #{isCurrent,jdbcType=TINYINT},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="preIssue != null" >
+        #{preIssue,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="prizePool != null" >
+        #{prizePool,jdbcType=INTEGER},
+      </if>
+      <if test="bitFlag != null" >
+        #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="example.mybatis.lottery.domain.BetGameIssues" >
+    update bet_game_issue
+    <set >
+      <if test="issueNo != null" >
+        ISSUE_NO = #{issueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gameId != null" >
+        GAME_ID = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="isCurrent != null" >
+        IS_CURRENT = #{isCurrent,jdbcType=TINYINT},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openTime != null" >
+        OPEN_TIME = #{openTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="preIssue != null" >
+        PRE_ISSUE = #{preIssue,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="prizePool != null" >
+        PRIZE_POOL = #{prizePool,jdbcType=INTEGER},
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="example.mybatis.lottery.domain.BetGameIssues" >
+    update bet_game_issue
+    set ISSUE_NO = #{issueNo,jdbcType=VARCHAR},
+      GAME_ID = #{gameId,jdbcType=INTEGER},
+      IS_CURRENT = #{isCurrent,jdbcType=TINYINT},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      OPEN_TIME = #{openTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=TINYINT},
+      PRE_ISSUE = #{preIssue,jdbcType=INTEGER},
+      RESULT = #{result,jdbcType=VARCHAR},
+      PRIZE_POOL = #{prizePool,jdbcType=INTEGER},
+      BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.1.xsd 
+	http://www.springframework.org/schema/jee 
+	http://www.springframework.org/schema/jee/spring-jee-3.1.xsd 
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd"
+	default-lazy-init="false">
+
+	<import resource="classpath*:spring-dal-mybatis.xml"/>
+	
+	<!-- mybatis configuration for lottery database begin -->
+	<bean id="ds_lottery"  parent="ds_mysql_parent">
+        <property name="url" value="jdbc:mysql://192.168.59.103:3306/lottery?useUnicode=true&amp;characterEncoding=utf-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+	</bean>
+	<bean id="lotteryTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds_lottery"/>
+	</bean>
+	<bean id="lotterySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds_lottery"/>
+		<property name="configLocation" value="classpath:mysql/mybatis-config/config.xml"/>
+		<property name="mapperLocations" value="classpath:mysql/mybatis-mapper/*Mapper.xml"/>
+		<property name="typeHandlersPackage" value="example.mybatis.lottery.typehandler" />
+	</bean>
+	<!-- scan for mappers and let them be autowired begin-->
+	 <bean id="lotterySqlSessionTemplate" class="com.github.dbutils.mybatis.extend.MybatisSqlSessionTemplate">
+	   <constructor-arg ref="lotterySqlSessionFactory" />
+	 </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="example.mybatis.lottery.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="lotterySqlSessionFactory" />
+    </bean>
+    <!-- scan for mappers and let them be autowired end-->
+    <!-- mybatis configuration for lottery database end -->
+    
+</beans>
+	
+	
