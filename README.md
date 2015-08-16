@@ -2,9 +2,14 @@ microservice-sample
 =======
 A sample for microservice V1.0-SNAPSHOT
 
-TODO　
-=======
 
+Technology Stack 　
+-------
+Spring Boot
+SpringMVC
+Mybatis
+MySQL
+Java Code Hotspot(liveload)
 
 
 License
