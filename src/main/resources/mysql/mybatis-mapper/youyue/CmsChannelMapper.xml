@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.mybatis.youyue.mapper.CmsChannelMapper" >
+  <resultMap id="BaseResultMap" type="example.mybatis.youyue.domain.CmsChannel" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="BIT_FLAG" property="bitFlag" jdbcType="BIGINT" />
+    <result column="EXTEND_FEATURES" property="extendFeatures" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, CREATE_TIME, BIT_FLAG, EXTEND_FEATURES
+  </sql>
+  <select id="queryAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cms_channel
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_channel
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_channel
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="example.mybatis.youyue.domain.CmsChannel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms_channel (NAME, CREATE_TIME, BIT_FLAG, 
+      EXTEND_FEATURES)
+    values (#{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{bitFlag,jdbcType=BIGINT}, 
+      #{extendFeatures,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="example.mybatis.youyue.domain.CmsChannel" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG,
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="example.mybatis.youyue.domain.CmsChannel" >
+    update cms_channel
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="example.mybatis.youyue.domain.CmsChannel" >
+    update cms_channel
+    set NAME = #{name,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

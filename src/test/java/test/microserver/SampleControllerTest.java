@@ -7,7 +7,7 @@ import static org.mockito.Mockito.when;
 
 import com.ajaxjson.JSONMessage;
 import example.mybatis.lottery.mapper.BetGameIssuesMapper;
-import example.youyue.service.SampleController;
+import example.mybatis.lottery.service.LotteryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -21,7 +21,7 @@ import unittest.common.AbstractMockTestBuilder;
  */
 public class SampleControllerTest {
 
-    @InjectMocks private SampleController sampleController;
+    @InjectMocks private LotteryService sampleController;
     @Mock private BetGameIssuesMapper betGameIssuesMapper;
     @Mock private PlatformTransactionManager lotteryTransactionManager;
 

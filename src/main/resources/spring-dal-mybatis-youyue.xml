@@ -18,31 +18,31 @@
 
 	<import resource="classpath*:spring-dal-mybatis.xml"/>
 	
-	<!-- mybatis configuration for lottery database begin -->
-	<bean id="ds_lottery"  parent="ds_mysql_parent">
-        <property name="url" value="${lottery.db.conn.url}"/>
-        <property name="username" value="${lottery.db.conn.username}"/>
-        <property name="password" value="${lottery.db.conn.password}"/>
+	<!-- mybatis configuration for youyue database begin -->
+	<bean id="ds_youyue"  parent="ds_mysql_parent">
+        <property name="url" value="${youyue.db.conn.url}"/>
+        <property name="username" value="${youyue.db.conn.username}"/>
+        <property name="password" value="${youyue.db.conn.password}"/>
 	</bean>
-	<bean id="lotteryTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="ds_lottery"/>
+	<bean id="youyueTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds_youyue"/>
 	</bean>
-	<bean id="lotterySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="ds_lottery"/>
+	<bean id="youyueSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds_youyue"/>
 		<property name="configLocation" value="classpath:mysql/mybatis-config/config.xml"/>
-		<property name="mapperLocations" value="classpath:mysql/mybatis-mapper/lottery/*Mapper.xml"/>
-		<property name="typeHandlersPackage" value="example.mybatis.lottery.typehandler" />
+		<property name="mapperLocations" value="classpath:mysql/mybatis-mapper/youyue/*Mapper.xml"/>
+		<property name="typeHandlersPackage" value="example.mybatis.youyue.typehandler" />
 	</bean>
 	<!-- scan for mappers and let them be autowired begin-->
-	 <bean id="lotterySqlSessionTemplate" class="com.github.dbutils.mybatis.extend.MybatisSqlSessionTemplate">
-	   <constructor-arg ref="lotterySqlSessionFactory" />
+	 <bean id="youyueSqlSessionTemplate" class="com.github.dbutils.mybatis.extend.MybatisSqlSessionTemplate">
+	   <constructor-arg ref="youyueSqlSessionFactory" />
 	 </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="example.mybatis.lottery.mapper" />
-		<property name="sqlSessionFactoryBeanName" value="lotterySqlSessionFactory" />
+        <property name="basePackage" value="example.mybatis.youyue.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="youyueSqlSessionFactory" />
     </bean>
     <!-- scan for mappers and let them be autowired end-->
-    <!-- mybatis configuration for lottery database end -->
+    <!-- mybatis configuration for youyue database end -->
     
 </beans>
 	

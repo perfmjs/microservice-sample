@@ -2,6 +2,7 @@ package com.github.dbutils.mybatis.extend;
 
 import java.io.Serializable;
 import java.util.BitSet;
+import java.util.Calendar;
 
 /**
  * 
@@ -15,6 +16,9 @@ public interface IMyBatisEntity<I extends Serializable> extends Serializable {
     /**主键ID*/
     public I getId();
     public void setId(I id);
+    /**创建时间*/
+    public Calendar getCreateTime();
+    public void setCreateTime(Calendar createTime);
     /**扩展位字段*/
     public BitSet getBitFlag();
     public void setBitFlag(BitSet bitFlag);

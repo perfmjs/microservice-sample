@@ -13,11 +13,12 @@ import java.util.concurrent.TimeUnit;
  * 
  *JRebel6 Agent版本的VM启动参数如下：
  -noverify
+ -javaagent:/Users/tony/myfiles/jrebel/xrebel_running/xrebel.jar
  -agentpath:/Users/tony/myfiles/jrebel/jrebel_running/lib/libjrebel64.dylib
  -Drebel.base=/Users/tony/myfiles/jrebel/jrebel_base
  -Drebel.properties=/Users/tony/myfiles/jrebel/jrebel_config/jrebel.properties
  -Drebel.remoting_plugin=false
- -Drebel.dirs=/Users/tony/IdeaProjects/youyue-service/target/classes
+ -Drebel.dirs=/Users/tony/IdeaProjects/microservice-sample/target/classes
  * @project youyue-service
  * @author tony.shen
  * @date 2015年7月7日 下午16:38:51

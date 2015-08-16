@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.mybatis.youyue.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="example.mybatis.youyue.domain.User" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PASSWD" property="passwd" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="BIT_FLAG" property="bitFlag" jdbcType="BIGINT" />
+    <result column="EXTEND_FEATURES" property="extendFeatures" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, PASSWD, MOBILE, EMAIL, PHOTO, CREATE_TIME, BIT_FLAG, EXTEND_FEATURES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="example.mybatis.youyue.domain.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (NAME, PASSWD, MOBILE, 
+      EMAIL, PHOTO, CREATE_TIME, 
+      BIT_FLAG, EXTEND_FEATURES)
+    values (#{name,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{bitFlag,jdbcType=BIGINT}, #{extendFeatures,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="example.mybatis.youyue.domain.User" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="passwd != null" >
+        PASSWD,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="photo != null" >
+        PHOTO,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG,
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="example.mybatis.youyue.domain.User" >
+    update user
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        PASSWD = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        PHOTO = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="example.mybatis.youyue.domain.User" >
+    update user
+    set NAME = #{name,jdbcType=VARCHAR},
+      PASSWD = #{passwd,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      PHOTO = #{photo,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

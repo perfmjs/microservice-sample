@@ -7,30 +7,78 @@
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
         </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" 
-        				connectionURL="jdbc:mysql://dockerhost:3306/lottery?useUnicode=true&amp;characterEncoding=utf-8"
-        				userId="root"
-            			password="123456">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://dockerhost:3306/lottery?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root"
+                        password="123456">
         </jdbcConnection>
-        <javaModelGenerator targetPackage="example.mybatis3.domain" targetProject="MAVEN">
+        <javaModelGenerator targetPackage="example.mybatis.lottey.domain" targetProject="MAVEN">
             <property name="enableSubPackages" value="true" />
             <property name="rootClass" value="com.github.dbutils.mybatis.extend.AbstractMyBatisEntity" />
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="example.mybatis3.mapper" targetProject="MAVEN">
+        <sqlMapGenerator targetPackage="example.mybatis.lottery.mapper" targetProject="MAVEN">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="example.mybatis3.mapper" targetProject="MAVEN">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="example.mybatis.lottery.mapper" targetProject="MAVEN">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <table tableName="bet_game_issue" domainObjectName="BetGameIssues"
-        	enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+               enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
             <generatedKey column="ID" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
-        	<columnOverride column="GAME_ID" javaType="com.mybatis.lottery.enums.Game" />
-        	<columnOverride column="IS_CURRENT" javaType="java.lang.Boolean" />
-        	<columnOverride column="START_TIME" javaType="java.util.Calendar" />
-        	<columnOverride column="END_TIME" javaType="java.util.Calendar" />
-        	<columnOverride column="OPEN_TIME" javaType="java.util.Calendar" />
-        	<columnOverride column="STATUS" javaType="com.mybatis.lottery.enums.IssueStatus" />
+            <columnOverride column="GAME_ID" javaType="com.mybatis.lottery.enums.Game" />
+            <columnOverride column="IS_CURRENT" javaType="java.lang.Boolean" />
+            <columnOverride column="START_TIME" javaType="java.util.Calendar" />
+            <columnOverride column="END_TIME" javaType="java.util.Calendar" />
+            <columnOverride column="OPEN_TIME" javaType="java.util.Calendar" />
+            <columnOverride column="STATUS" javaType="com.mybatis.lottery.enums.IssueStatus" />
+        </table>
+    </context>
+    <context id="youyueGeneragtor" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://dockerhost:3306/youyue?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="example.mybatis.youyue.domain" targetProject="MAVEN">
+            <property name="enableSubPackages" value="true" />
+            <property name="rootClass" value="com.github.dbutils.mybatis.extend.AbstractMyBatisEntity" />
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="example.mybatis.youyue.mapper" targetProject="MAVEN">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="example.mybatis.youyue.mapper" targetProject="MAVEN">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+        <table tableName="cms_channel" domainObjectName="CmsChannel"
+               enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+            <generatedKey column="ID" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+            <columnOverride column="CREATE_TIME" javaType="java.util.Calendar" />
+            <columnOverride column="BIT_FLAG" javaType="java.util.BitSet" />
+            <columnOverride column="EXTEND_FEATURES" javaType="com.github.dbutils.mybatis.extend.ExtendFeaturesMap" />
+        </table>
+        <table tableName="user" domainObjectName="User"
+               enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+            <generatedKey column="ID" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+            <columnOverride column="CREATE_TIME" javaType="java.util.Calendar" />
+            <columnOverride column="BIT_FLAG" javaType="java.util.BitSet" />
+            <columnOverride column="EXTEND_FEATURES" javaType="com.github.dbutils.mybatis.extend.ExtendFeaturesMap" />
+        </table>
+        <table tableName="cms" domainObjectName="Cms"
+               enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+            <generatedKey column="ID" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+            <columnOverride column="CREATE_TIME" javaType="java.util.Calendar" />
+            <columnOverride column="BIT_FLAG" javaType="java.util.BitSet" />
+            <columnOverride column="EXTEND_FEATURES" javaType="com.github.dbutils.mybatis.extend.ExtendFeaturesMap" />
+        </table>
+        <table tableName="cms_comment" domainObjectName="CmsComment"
+               enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+            <generatedKey column="ID" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" />
+            <columnOverride column="CREATE_TIME" javaType="java.util.Calendar" />
+            <columnOverride column="BIT_FLAG" javaType="java.util.BitSet" />
+            <columnOverride column="EXTEND_FEATURES" javaType="com.github.dbutils.mybatis.extend.ExtendFeaturesMap" />
         </table>
     </context>
 </generatorConfiguration>

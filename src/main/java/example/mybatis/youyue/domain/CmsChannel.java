@@ -1,23 +1,29 @@
-package com.github.dbutils.mybatis.extend;
+package example.mybatis.youyue.domain;
 
-import java.io.Serializable;
+import com.github.dbutils.mybatis.extend.AbstractMyBatisEntity;
+import com.github.dbutils.mybatis.extend.ExtendFeaturesMap;
+
 import java.util.BitSet;
 import java.util.Calendar;
 
-public abstract class AbstractMyBatisEntity<I extends Serializable> implements IMyBatisEntity<I> {
+public class CmsChannel extends AbstractMyBatisEntity<Integer> {
 
-    private static final long serialVersionUID = 4151009872540236564L;
-    protected I id;
-    protected Calendar createTime;
-    protected BitSet bitFlag;
-    protected ExtendFeaturesMap<?, ?> extendFeatures;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
-    public I getId() {
+    public Integer getId() {
         return this.id;
     }
     @Override
-    public void setId(I id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Calendar getCreateTime() {

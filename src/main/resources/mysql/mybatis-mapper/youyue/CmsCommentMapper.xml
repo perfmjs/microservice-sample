@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.mybatis.youyue.mapper.CmsCommentMapper" >
+  <resultMap id="BaseResultMap" type="example.mybatis.youyue.domain.CmsComment" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CMS_ID" property="cmsId" jdbcType="INTEGER" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="LIKE_COUNT" property="likeCount" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="BIT_FLAG" property="bitFlag" jdbcType="BIGINT" />
+    <result column="EXTEND_FEATURES" property="extendFeatures" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CMS_ID, USER_NAME, CONTENT, LIKE_COUNT, CREATE_TIME, BIT_FLAG, EXTEND_FEATURES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms_comment
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_comment
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="example.mybatis.youyue.domain.CmsComment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms_comment (CMS_ID, USER_NAME, CONTENT, 
+      LIKE_COUNT, CREATE_TIME, BIT_FLAG, 
+      EXTEND_FEATURES)
+    values (#{cmsId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{likeCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{bitFlag,jdbcType=BIGINT}, 
+      #{extendFeatures,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="example.mybatis.youyue.domain.CmsComment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmsId != null" >
+        CMS_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="likeCount != null" >
+        LIKE_COUNT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG,
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmsId != null" >
+        #{cmsId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null" >
+        #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="example.mybatis.youyue.domain.CmsComment" >
+    update cms_comment
+    <set >
+      <if test="cmsId != null" >
+        CMS_ID = #{cmsId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null" >
+        LIKE_COUNT = #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="example.mybatis.youyue.domain.CmsComment" >
+    update cms_comment
+    set CMS_ID = #{cmsId,jdbcType=INTEGER},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      LIKE_COUNT = #{likeCount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

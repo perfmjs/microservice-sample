@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="example.mybatis.youyue.mapper.CmsMapper" >
+  <resultMap id="BaseResultMap" type="example.mybatis.youyue.domain.Cms" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CHANNEL_NAME" property="channelName" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="IMG1" property="img1" jdbcType="VARCHAR" />
+    <result column="IMG2" property="img2" jdbcType="VARCHAR" />
+    <result column="IMG3" property="img3" jdbcType="VARCHAR" />
+    <result column="LABEL" property="label" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="SOURCE_URL" property="sourceUrl" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="LIKE_COUNT" property="likeCount" jdbcType="INTEGER" />
+    <result column="UNLIKE_COUNT" property="unlikeCount" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="BIT_FLAG" property="bitFlag" jdbcType="BIGINT" />
+    <result column="EXTEND_FEATURES" property="extendFeatures" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CHANNEL_NAME, TITLE, IMG1, IMG2, IMG3, LABEL, SOURCE, SOURCE_URL, CONTENT, LIKE_COUNT, 
+    UNLIKE_COUNT, CREATE_TIME, BIT_FLAG, EXTEND_FEATURES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cms
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="example.mybatis.youyue.domain.Cms" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms (CHANNEL_NAME, TITLE, IMG1, 
+      IMG2, IMG3, LABEL, 
+      SOURCE, SOURCE_URL, CONTENT, 
+      LIKE_COUNT, UNLIKE_COUNT, CREATE_TIME, 
+      BIT_FLAG, EXTEND_FEATURES)
+    values (#{channelName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{img1,jdbcType=VARCHAR}, 
+      #{img2,jdbcType=VARCHAR}, #{img3,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{sourceUrl,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{likeCount,jdbcType=INTEGER}, #{unlikeCount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{bitFlag,jdbcType=BIGINT}, #{extendFeatures,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="example.mybatis.youyue.domain.Cms" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="channelName != null" >
+        CHANNEL_NAME,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="img1 != null" >
+        IMG1,
+      </if>
+      <if test="img2 != null" >
+        IMG2,
+      </if>
+      <if test="img3 != null" >
+        IMG3,
+      </if>
+      <if test="label != null" >
+        LABEL,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="sourceUrl != null" >
+        SOURCE_URL,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="likeCount != null" >
+        LIKE_COUNT,
+      </if>
+      <if test="unlikeCount != null" >
+        UNLIKE_COUNT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG,
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="img1 != null" >
+        #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null" >
+        #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null" >
+        #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceUrl != null" >
+        #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null" >
+        #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="unlikeCount != null" >
+        #{unlikeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="example.mybatis.youyue.domain.Cms" >
+    update cms
+    <set >
+      <if test="channelName != null" >
+        CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="img1 != null" >
+        IMG1 = #{img1,jdbcType=VARCHAR},
+      </if>
+      <if test="img2 != null" >
+        IMG2 = #{img2,jdbcType=VARCHAR},
+      </if>
+      <if test="img3 != null" >
+        IMG3 = #{img3,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        LABEL = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceUrl != null" >
+        SOURCE_URL = #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="likeCount != null" >
+        LIKE_COUNT = #{likeCount,jdbcType=INTEGER},
+      </if>
+      <if test="unlikeCount != null" >
+        UNLIKE_COUNT = #{unlikeCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bitFlag != null" >
+        BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      </if>
+      <if test="extendFeatures != null" >
+        EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="example.mybatis.youyue.domain.Cms" >
+    update cms
+    set CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      IMG1 = #{img1,jdbcType=VARCHAR},
+      IMG2 = #{img2,jdbcType=VARCHAR},
+      IMG3 = #{img3,jdbcType=VARCHAR},
+      LABEL = #{label,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      SOURCE_URL = #{sourceUrl,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      LIKE_COUNT = #{likeCount,jdbcType=INTEGER},
+      UNLIKE_COUNT = #{unlikeCount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
+      EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

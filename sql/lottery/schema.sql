@@ -4,7 +4,7 @@ USE lottery;
 create table bet_game_issue
 (
   ID                   int not null auto_increment,
-  ISSUE_NO			varchar(100) not null default '0' comment '彩期.',
+  ISSUE_NO			varchar(100) not null default '0' comment '彩期',
   GAME_ID               int not null default 0,
   IS_CURRENT           tinyint not null default 0 comment '是否当前期.',
   START_TIME           	datetime not null default CURRENT_TIMESTAMP comment '开始时间',

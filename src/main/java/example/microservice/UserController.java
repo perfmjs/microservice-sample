@@ -4,16 +4,15 @@ import com.ajaxjson.JSONMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
-
 
 /**
  * @project spring-boot-tutorial
@@ -30,10 +29,23 @@ public class UserController {
     @Value("${spring.mvc.view.prefix:aaa}")
     private String prefix;
 
-    @RequestMapping("/message")
-    private JSONMessage getMessage() {
+    @RequestMapping(value={"/message"}, method = {RequestMethod.GET, RequestMethod.POST})
+    private JSONMessage getMessage(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         logger.debug("getMessage success, code: {}", 200);
         return JSONMessage.newMessageOnSuccess();
+    }
+
+    @RequestMapping(value={"/message2"}, method={RequestMethod.GET, RequestMethod.POST})
+    private JSONMessage getMessage2(@ModelAttribute("user") User user, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        List<User> userList = new ArrayList<>();
+        userList.add(new User("tony"));
+        userList.add(new User("shen"));
+        return JSONMessage.newMessageOnSuccess()
+                .setResult("userName", user.getName())
+                .setResult("userId", user.getId())
+                .setResult("userList", userList);
     }
 
     @RequestMapping("/{id}")

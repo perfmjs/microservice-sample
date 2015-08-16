@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.microservice.service</groupId>
-    <artifactId>service-starter</artifactId>
+    <artifactId>microservice-sample</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
@@ -142,7 +142,7 @@
                     <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
-            <!-- mybatis代码生成插件, 在项目下运行：mvn clean mybatis-generator:generate -Dmybatis.generator.contexts=lotteryGeneragtor -->
+            <!-- mybatis代码生成插件, 在项目下运行：mvn clean mybatis-generator:generate -Dmybatis.generator.contexts=lotteryGeneragtor-->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>

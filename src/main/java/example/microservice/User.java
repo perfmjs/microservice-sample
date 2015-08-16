@@ -13,6 +13,12 @@ public class User implements Serializable {
     private Long id;
     private String name;
 
+    public User() {
+    }
+    public User(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
@@ -22,7 +28,7 @@ public class User implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {

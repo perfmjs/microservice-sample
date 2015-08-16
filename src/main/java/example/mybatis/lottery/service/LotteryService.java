@@ -1,4 +1,4 @@
-package example.youyue.service;
+package example.mybatis.lottery.service;
 
 import com.ajaxjson.JSONMessage;
 import com.github.dbutils.mybatis.extend.ExtendFeaturesMap;
@@ -9,7 +9,6 @@ import example.mybatis.lottery.enums.IssueStatus;
 import example.mybatis.lottery.mapper.BetGameIssuesMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -24,12 +23,14 @@ import java.util.Calendar;
  * Created by tony on 15/7/7.
  */
 @RestController
-@RequestMapping("/sample")
-public class SampleController {
+@RequestMapping("/lottery")
+public class LotteryService {
 
-    private transient static final Logger logger = LoggerFactory.getLogger(SampleController.class);
-    @Autowired private BetGameIssuesMapper betGameIssuesMapper;
-    @Autowired private PlatformTransactionManager lotteryTransactionManager;
+    private transient static final Logger logger = LoggerFactory.getLogger(LotteryService.class);
+//    @Autowired
+    private BetGameIssuesMapper betGameIssuesMapper;
+//    @Autowired
+    private PlatformTransactionManager lotteryTransactionManager;
 
     @RequestMapping("/home")
     public String home() {
