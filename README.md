@@ -6,9 +6,13 @@ A sample for microservice V1.0-SNAPSHOT
 Technology Stack 　
 -------
 Spring Boot
+
 SpringMVC
+
 Mybatis
+
 MySQL
+
 Java Code Hotspot(liveload)
 
 
