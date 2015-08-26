@@ -1,6 +1,7 @@
 package example.mybatis.youyue.mapper;
 
 import example.mybatis.youyue.domain.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User selectByNameAndPasswd(@Param("name")String name, @Param("passwd")String passwd);
 }

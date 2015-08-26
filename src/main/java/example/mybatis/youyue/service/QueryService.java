@@ -12,10 +12,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -32,9 +29,8 @@ public class QueryService {
     @Autowired private CmsChannelMapper cmsChannelMapper;
     @Autowired private PlatformTransactionManager youyueTransactionManager;
 
-    @RequestMapping(value={"/channel"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public JSONMessage register(HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+    @RequestMapping(value={"/channel"}, method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.OPTIONS})
+    public JSONMessage queryChannel() {
         try {
             List<CmsChannel> cmsChannelList = cmsChannelMapper.queryAll();
             List<String> channelList = new ArrayList<>();

@@ -1,10 +1,13 @@
 package starter;
 
+import com.springmvc.interceptor.JSONWebTokenHandlerInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.*;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.concurrent.TimeUnit;
@@ -28,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 @PropertySource("/application.properties")
 @EnableAutoConfiguration
 @ComponentScan({"com.*", "example.*"})
-public class Application {
+public class Application extends WebMvcConfigurerAdapter {
 	
     public static void main(String[] args) {
     	SpringApplication.run(Application.class);
@@ -48,6 +51,12 @@ public class Application {
         factory.setPort(8888);
         factory.setSessionTimeout(30, TimeUnit.MINUTES);
         return factory;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        System.out.println("dddddd");
+        registry.addInterceptor(new JSONWebTokenHandlerInterceptor());
     }
 
 }
