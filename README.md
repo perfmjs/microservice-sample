@@ -1,6 +1,6 @@
 microservice-sample
 =======
-A sample for microservice V1.0-SNAPSHOT
+A sample for microservice V1.0.x
 
 
 Technology Stack 　
@@ -14,6 +14,8 @@ Mybatis
 MySQL
 
 Java Code Hotspot(liveload)
+
+Docker
 
 
 License
