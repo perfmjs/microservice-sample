@@ -3,6 +3,7 @@ package com.springmvc.interceptor;
 import com.ajaxjson.JSONMessage;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.JWTVerifyException;
+import com.util.JSONWebTokenUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,19 +28,9 @@ public class JSONWebTokenHandlerInterceptor extends HandlerInterceptorAdapter {
         if (this.notNeedCheckToken(request)) {
             return true;
         }
-        String jwtValue = request.getParameter("x-access-token");
-        if (jwtValue != null && !"".equals(jwtValue) && jwtValue.split("\\|").length > 1) {
-            String[] jwts = jwtValue.split("\\|");
-            String token = jwts[0];
-            String userName = jwts[1];
-            try {
-                Map<String,Object> decodedPayload =  new JWTVerifier("secretCommonLogin" + userName).verify(token);
-                if (decodedPayload.get("iss") != null && decodedPayload.get("iss").equals(userName)) {
-                    return true;
-                }
-            } catch (NoSuchAlgorithmException |  InvalidKeyException | IOException | SignatureException | JWTVerifyException e) {
-                e.printStackTrace();
-            }
+        String jwtValue = request.getParameter(JSONWebTokenUtils.JWT_REQUEST_PARAMETER_KEY);
+        if (JSONWebTokenUtils.checkToken(jwtValue)) {
+            return true;
         }
 
         try {
@@ -54,7 +45,9 @@ public class JSONWebTokenHandlerInterceptor extends HandlerInterceptorAdapter {
         return request.getMethod().equalsIgnoreCase("GET")
                 || request.getServletPath().indexOf("/user/login") > -1
                 || request.getServletPath().indexOf("/user/register") > -1
-                || request.getServletPath().indexOf("/user/checkToken") > -1;
+                || request.getServletPath().indexOf("/user/checkToken") > -1
+                || request.getServletPath().indexOf("/cms/add") > -1
+                ;
     }
 
 }

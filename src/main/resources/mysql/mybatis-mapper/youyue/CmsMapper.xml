@@ -28,6 +28,13 @@
     from cms
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="queryByChannel" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cms
+    where CHANNEL_NAME = #{channelName}
+    ORDER BY CREATE_TIME DESC
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cms
     where ID = #{id,jdbcType=INTEGER}
@@ -206,5 +213,16 @@
       BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
       EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="incrementLikeCount">
+    update cms
+    set LIKE_COUNT = LIKE_COUNT + 1
+    where ID = #{cmsId}
+  </update>
+  <update id="incrementUnlikeCount">
+    update cms
+    set UNLIKE_COUNT = UNLIKE_COUNT + 1
+    where ID = #{cmsId}
   </update>
 </mapper>

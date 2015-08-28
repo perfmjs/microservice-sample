@@ -20,6 +20,16 @@
     from cms_comment
     where ID = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="queryByCmsId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from cms_comment
+    where CMS_ID = #{cmsId,jdbcType=INTEGER}
+    ORDER BY CREATE_TIME DESC
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cms_comment
     where ID = #{id,jdbcType=INTEGER}
@@ -124,5 +134,10 @@
       BIT_FLAG = #{bitFlag,jdbcType=BIGINT},
       EXTEND_FEATURES = #{extendFeatures,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="incrementLikeCount" parameterType="java.lang.Integer">
+    update cms_comment
+    set LIKE_COUNT = LIKE_COUNT + 1
+    where ID = #{id}
   </update>
 </mapper>

@@ -40,34 +40,34 @@ public class CmsComment extends AbstractMyBatisEntity<Integer> {
     public void setLikeCount(Integer likeCount) {
         this.likeCount = likeCount;
     }
+
     @Override
     public Integer getId() {
         return this.id;
     }
-
     @Override
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Calendar getCreateTime() {
-        return createTime;
+        return createTime = createTime==null?Calendar.getInstance():createTime;
     }
     public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
-
     @Override
     public BitSet getBitFlag() {
-        return this.bitFlag;
+        return this.bitFlag = bitFlag==null?new BitSet(0):bitFlag;
     }
     @Override
     public void setBitFlag(BitSet bitFlag) {
         this.bitFlag = bitFlag;
     }
-
     @Override
-    public ExtendFeaturesMap<?, ?> getExtendFeatures() {
+    public ExtendFeaturesMap getExtendFeatures() {
+        if (this.extendFeatures == null) {
+            this.extendFeatures = new ExtendFeaturesMap();
+        }
         return this.extendFeatures;
     }
     @Override

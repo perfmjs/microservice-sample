@@ -10,7 +10,7 @@ public abstract class AbstractMyBatisEntity<I extends Serializable> implements I
     protected I id;
     protected Calendar createTime;
     protected BitSet bitFlag;
-    protected ExtendFeaturesMap<?, ?> extendFeatures;
+    protected ExtendFeaturesMap extendFeatures;
 
     @Override
     public I getId() {
@@ -35,8 +35,11 @@ public abstract class AbstractMyBatisEntity<I extends Serializable> implements I
         this.bitFlag = bitFlag;
     }
     @Override
-    public ExtendFeaturesMap<?, ?> getExtendFeatures() {
-        return this.extendFeatures==null?new ExtendFeaturesMap():extendFeatures;
+    public ExtendFeaturesMap getExtendFeatures() {
+        if (this.extendFeatures == null) {
+            this.extendFeatures = new ExtendFeaturesMap();
+        }
+        return this.extendFeatures;
     }
     @Override
     public void setExtendFeatures(ExtendFeaturesMap<?, ?> extendFeatures) {

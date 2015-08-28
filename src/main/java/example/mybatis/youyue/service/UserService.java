@@ -5,6 +5,7 @@ import com.auth0.jwt.Algorithm;
 import com.auth0.jwt.JWTSigner;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.JWTVerifyException;
+import com.util.JSONWebTokenUtils;
 import example.mybatis.youyue.domain.User;
 import example.mybatis.youyue.mapper.UserMapper;
 import org.slf4j.Logger;
@@ -106,18 +107,6 @@ public class UserService {
     }
 
     private String buildJSONWebToken(User user) {
-        JWTSigner signer = new JWTSigner("secretCommonLogin" + user.getName());
-        HashMap<String, Object> claims = new HashMap<>();
-        claims.put("iss", user.getName());
-        claims.put("sub", "commonLogin");
-        claims.put("aud", "webapp");
-        String token = signer.sign(claims,
-                new JWTSigner.Options().setAlgorithm(Algorithm.HS256)
-                        .setExpirySeconds(3600*1)
-                        .setNotValidBeforeLeeway(5)
-                        .setIssuedAt(false)
-                        .setJwtId(false)
-        );
-        return token + '|' + user.getName();
+       return JSONWebTokenUtils.buildJSONWebToken("secretCommonLogin", user.getName(), 3600*24);
     }
 }

@@ -128,6 +128,13 @@ public class JSONMessage {
         return this;
     }
 
+    public static Object defaultValue(Object value, Object defaultValue) {
+        if (value == null || "null".equals(value)) {
+            return defaultValue;
+        }
+        return value;
+    }
+
     @Override
     public String toString() {
         return this.toJSONString();

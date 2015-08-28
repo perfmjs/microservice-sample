@@ -5,6 +5,8 @@ import com.github.dbutils.mybatis.extend.ExtendFeaturesMap;
 
 import java.util.BitSet;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class Cms extends AbstractMyBatisEntity<Integer> {
 
@@ -108,39 +110,46 @@ public class Cms extends AbstractMyBatisEntity<Integer> {
         this.unlikeCount = unlikeCount;
     }
 
+    public boolean getHasBigImg() {
+        return this.getExtendFeatures().get("hasBigImg")==null?false:(Boolean)this.getExtendFeatures().get("hasBigImg");
+    }
+
+    public void setHasBigImg(boolean hasBigImg) {
+        this.getExtendFeatures().put("hasBigImg", hasBigImg);
+    }
+
+
     @Override
     public Integer getId() {
         return this.id;
     }
-
     @Override
     public void setId(Integer id) {
         this.id = id;
     }
-
     public Calendar getCreateTime() {
-        return createTime;
+        return createTime = createTime==null?Calendar.getInstance():createTime;
     }
     public void setCreateTime(Calendar createTime) {
         this.createTime = createTime;
     }
-
     @Override
     public BitSet getBitFlag() {
-        return this.bitFlag;
+        return this.bitFlag = bitFlag==null?new BitSet(0):bitFlag;
     }
     @Override
     public void setBitFlag(BitSet bitFlag) {
         this.bitFlag = bitFlag;
     }
-
     @Override
-    public ExtendFeaturesMap<?, ?> getExtendFeatures() {
+    public ExtendFeaturesMap getExtendFeatures() {
+        if (this.extendFeatures == null) {
+            this.extendFeatures = new ExtendFeaturesMap();
+        }
         return this.extendFeatures;
     }
     @Override
-    public void setExtendFeatures(ExtendFeaturesMap<?, ?> extendFeatures) {
+    public void setExtendFeatures(ExtendFeaturesMap extendFeatures) {
         this.extendFeatures = extendFeatures;
     }
-
 }
